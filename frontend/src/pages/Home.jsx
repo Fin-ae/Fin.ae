@@ -4,56 +4,50 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={styles.container}>
-      <h1>Compare Financial Products in UAE</h1>
-      <p>Loans, Credit Cards, Insurance & More</p>
+    <div className="min-h-screen bg-gray-50">
 
-      <button onClick={() => navigate("/compare")} style={styles.button}>
-        Start Comparing
-      </button>
+      {/* Navbar */}
+      <div className="flex justify-between items-center p-4 bg-blue-900 text-white">
+        <h1 className="text-xl font-bold">Fin.ae</h1>
 
-      <div style={styles.categories}>
-        {["Credit Cards", "Loans", "Insurance", "Bank Accounts"].map((item) => (
-          <div key={item} style={styles.card}>
-            <h3>{item}</h3>
+        <div className="space-x-4">
+          <button onClick={() => navigate("/")}>Home</button>
+          <button onClick={() => navigate("/compare")}>Compare</button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="text-center mt-20 px-4">
+        <h2 className="text-4xl font-bold">
+          Compare Financial Products in UAE
+        </h2>
+
+        <p className="text-gray-600 mt-2">
+          Loans, Credit Cards, Insurance & Bank Accounts
+        </p>
+
+        <button
+          onClick={() => navigate("/compare")}
+          className="mt-6 bg-blue-600 text-white px-6 py-2 rounded"
+        >
+          Start Comparing
+        </button>
+      </div>
+
+      {/* Categories */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-10 mt-16">
+        {["Credit Cards", "Loans", "Insurance", "Accounts"].map((item) => (
+          <div
+            key={item}
+            className="bg-white p-6 shadow rounded text-center hover:shadow-lg"
+          >
+            {item}
           </div>
         ))}
       </div>
 
-      <div style={styles.aiBox}>
-        <h3>Ask AI Assistant</h3>
-        <input placeholder="e.g. Best credit card for salary 5000 AED" />
-      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    textAlign: "center",
-    padding: "40px",
-  },
-  button: {
-    padding: "10px 20px",
-    margin: "20px",
-    background: "#007bff",
-    color: "white",
-    border: "none",
-  },
-  categories: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
-    marginTop: "30px",
-  },
-  card: {
-    padding: "20px",
-    border: "1px solid #ccc",
-    width: "150px",
-  },
-  aiBox: {
-    marginTop: "40px",
-  },
-};
 
 export default Home;
