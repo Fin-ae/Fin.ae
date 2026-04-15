@@ -1,4 +1,4 @@
-SOURCES = [
+[
     {
         "name": "Takaful Emarat",
         "base_url": "https://www.takafulemarat.com",
