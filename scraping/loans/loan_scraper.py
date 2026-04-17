@@ -28,6 +28,7 @@ for url in urls:
             if "loan" in text.lower():
                 loan_data.append({
                     "source": url,
+                    "bank_hint": " ".join(text.split()[0:5]),
                     "details": text[:200]  # limit text size
                 })
 
