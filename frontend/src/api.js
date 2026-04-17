@@ -34,4 +34,7 @@ export const getNews = (category) =>
 export const openChat = (session_id, message) =>
   API.post('/api/chat/open', { session_id, message });
 
+export const agentAction = (session_id, action_type, action_data) =>
+  API.post('/api/chat/agent-action', { session_id, action_type, action_data });
+
 export default API;

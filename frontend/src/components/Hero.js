@@ -27,13 +27,6 @@ export default function Hero({ onStartChat }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-6">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              <span className="text-xs tracking-[0.2em] uppercase font-semibold text-text-secondary">
-                AI-Powered Financial Assistant
-              </span>
-            </div>
-
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black leading-none text-primary mb-6">
               Your smart path to{' '}
               <span className="text-accent">better</span>{' '}

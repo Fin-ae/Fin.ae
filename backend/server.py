@@ -11,36 +11,25 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Optional
-from motor.motor_asyncio import AsyncIOMotorClient
-from groq import Groq
+import httpx
 
-MONGO_URL = os.environ.get("MONGO_URL")
-DB_NAME = os.environ.get("DB_NAME")
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "").strip()
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-groq_client = Groq(api_key=GROQ_API_KEY)
+# ─── In-Memory Store ───────────────────────────────────────
 
-# ─── MongoDB ───────────────────────────────────────────────
-
-db_client = None
-db = None
-
-async def connect_db():
-    global db_client, db
-    db_client = AsyncIOMotorClient(MONGO_URL)
-    db = db_client[DB_NAME]
-
-async def close_db():
-    global db_client
-    if db_client:
-        db_client.close()
+policies_store: list = []
+news_store: list = []
+conversations_store: dict = {}
+profiles_store: dict = {}
+applications_store: dict = {}
+open_chats_store: dict = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await connect_db()
-    await seed_data()
+    seed_data()
     yield
-    await close_db()
 
 app = FastAPI(lifespan=lifespan)
 
@@ -79,6 +68,11 @@ class ApplicationRequest(BaseModel):
 
 class ApplicationUpdateRequest(BaseModel):
     status: str
+
+class AgentActionRequest(BaseModel):
+    session_id: str
+    action_type: str
+    action_data: dict
 
 # ─── Seed Data ─────────────────────────────────────────────
 
@@ -376,54 +370,79 @@ FINANCIAL_NEWS = [
     }
 ]
 
-async def seed_data():
-    existing = await db.policies.count_documents({})
-    if existing == 0:
-        await db.policies.insert_many(FINANCIAL_POLICIES)
-        print(f"Seeded {len(FINANCIAL_POLICIES)} financial policies")
-    
-    existing_news = await db.news.count_documents({})
-    if existing_news == 0:
-        await db.news.insert_many(FINANCIAL_NEWS)
-        print(f"Seeded {len(FINANCIAL_NEWS)} news articles")
+def seed_data():
+    global policies_store, news_store
+    policies_store = list(FINANCIAL_POLICIES)
+    news_store = list(FINANCIAL_NEWS)
+    print(f"Loaded {len(policies_store)} policies and {len(news_store)} news articles")
 
 # ─── Helper: Call Groq ─────────────────────────────────────
 
 def call_groq(messages: list, temperature: float = 0.7, max_tokens: int = 2048) -> str:
     try:
-        completion = groq_client.chat.completions.create(
-            model="openai/gpt-oss-120b",
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-        )
-        return completion.choices[0].message.content
+        with httpx.Client(timeout=30.0) as client:
+            response = client.post(
+                GROQ_API_URL,
+                headers={
+                    "Authorization": f"Bearer {GROQ_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": GROQ_MODEL,
+                    "messages": messages,
+                    "temperature": temperature,
+                    "max_tokens": max_tokens,
+                },
+            )
+            response.raise_for_status()
+            return response.json()["choices"][0]["message"]["content"]
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"LLM service error: {str(e)}")
 
 AVATAR_SYSTEM_PROMPT = """You are Fin-ae, a friendly and professional AI financial assistant for the UAE market. You help users find the best financial products including insurance, loans, credit cards, investments, and bank accounts.
 
-Your personality:
+**Personality**
 - Professional yet warm and approachable
 - Knowledgeable about UAE financial products and regulations
-- Clear and concise in explanations
-- Never provide regulated financial advice - always suggest consulting a licensed advisor for final decisions
+- Use **markdown formatting** in every response: bold key terms, bullet lists for options, numbered steps where relevant
+- Never provide regulated financial advice — always suggest consulting a licensed advisor for final decisions
 
-Your conversation goals:
-1. Greet the user and understand what they're looking for
-2. Collect key information naturally through conversation:
-   - Name, age, nationality/residency status
-   - Monthly salary/income
-   - Employment type (salaried/self-employed)
-   - Financial goal (insurance, loan, investment, etc.)
-   - Risk appetite (conservative/moderate/aggressive)
-   - Sharia compliance preference
-   - Any specific requirements
-3. Don't ask all questions at once - be conversational
-4. Once you have enough info, summarize what you've learned and suggest you can find matching products
-5. Keep responses concise (2-3 sentences max per point)
+## Information Gathering Steps
 
-IMPORTANT: Never repeat a question the user has already answered. Track the conversation context carefully."""
+When a user expresses interest in a financial product, follow these steps **one at a time**:
+
+**Step 1 — Identify the Goal**
+Confirm what product category they need: insurance, loan, credit card, investment, or bank account. Acknowledge their choice warmly.
+
+**Step 2 — Personal Details** (one question per message)
+- Full name and age
+- Nationality and UAE residency status (resident / visitor / citizen)
+
+**Step 3 — Financial Profile** (one question per message)
+- Monthly income / salary in AED
+- Employment type: salaried, self-employed, or business owner
+
+**Step 4 — Preferences** (one question per message)
+- Risk appetite: conservative, moderate, or aggressive
+- Sharia-compliant products preference (yes / no)
+- Any specific requirements or concerns
+
+**Step 5 — Confirmation**
+Once you have gathered enough information, summarise what you have learned and let the user know you are finding the best matching products:
+
+> "Based on what you've shared, I have everything I need. Let me find the best **[product type]** options for you..."
+
+## Formatting Rules
+- Use **bold** for product names, key figures, and important terms
+- Use `-` bullet lists for options or benefits
+- Use numbered lists for sequential steps
+- Keep each response to 2–4 sentences or a short list — never a wall of text
+- **Never ask more than one question at a time**
+
+## Critical Rules
+- Never repeat a question the user has already answered
+- Track all provided information across the conversation carefully
+- When the user asks about a specific product or policy mentioned, give a concise factual summary"""
 
 EXTRACTION_SYSTEM_PROMPT = """You are a data extraction assistant. Given a conversation between a user and a financial assistant, extract the user's profile information into a structured JSON format.
 
@@ -463,69 +482,49 @@ async def health():
 
 @app.post("/api/chat/message")
 async def chat_message(req: ChatMessageRequest):
-    # Load conversation history from DB
-    conversation = await db.conversations.find_one(
-        {"session_id": req.session_id},
-        {"_id": 0}
-    )
-    
-    if not conversation:
-        conversation = {
+    if req.session_id not in conversations_store:
+        conversations_store[req.session_id] = {
             "session_id": req.session_id,
             "messages": [],
             "created_at": datetime.now(timezone.utc).isoformat(),
         }
-        await db.conversations.insert_one({**conversation})
-    
-    # Build messages for Groq
+    conversation = conversations_store[req.session_id]
+
     groq_messages = [{"role": "system", "content": AVATAR_SYSTEM_PROMPT}]
     for msg in conversation["messages"]:
         groq_messages.append({"role": msg["role"], "content": msg["content"]})
     groq_messages.append({"role": "user", "content": req.message})
-    
-    # Get AI response
+
     ai_response = call_groq(groq_messages)
-    
-    # Save to DB
-    await db.conversations.update_one(
-        {"session_id": req.session_id},
-        {"$push": {"messages": {
-            "$each": [
-                {"role": "user", "content": req.message, "timestamp": datetime.now(timezone.utc).isoformat()},
-                {"role": "assistant", "content": ai_response, "timestamp": datetime.now(timezone.utc).isoformat()}
-            ]
-        }}}
-    )
-    
+
+    now = datetime.now(timezone.utc).isoformat()
+    conversation["messages"].append({"role": "user", "content": req.message, "timestamp": now})
+    conversation["messages"].append({"role": "assistant", "content": ai_response, "timestamp": now})
+
     return {"response": ai_response, "session_id": req.session_id}
 
 # ── Chat: Extract User Profile ─────────────────────────────
 
 @app.post("/api/chat/extract-profile")
 async def extract_profile(req: ExtractProfileRequest):
-    conversation = await db.conversations.find_one(
-        {"session_id": req.session_id},
-        {"_id": 0}
-    )
-    
+    conversation = conversations_store.get(req.session_id)
+
     if not conversation or not conversation.get("messages"):
         raise HTTPException(status_code=404, detail="No conversation found")
-    
-    # Build conversation text
+
     conv_text = "\n".join([
-        f"{msg['role'].upper()}: {msg['content']}" 
+        f"{msg['role'].upper()}: {msg['content']}"
         for msg in conversation["messages"]
     ])
-    
+
     groq_messages = [
         {"role": "system", "content": EXTRACTION_SYSTEM_PROMPT},
         {"role": "user", "content": f"Extract the user profile from this conversation:\n\n{conv_text}"}
     ]
-    
+
     raw_response = call_groq(groq_messages, temperature=0.1)
-    
+
     try:
-        # Try to parse JSON from response
         json_str = raw_response.strip()
         if json_str.startswith("```"):
             json_str = json_str.split("```")[1]
@@ -534,14 +533,13 @@ async def extract_profile(req: ExtractProfileRequest):
         profile = json.loads(json_str.strip())
     except json.JSONDecodeError:
         profile = {"raw_response": raw_response, "completeness_score": 0}
-    
-    # Save profile
-    await db.profiles.update_one(
-        {"session_id": req.session_id},
-        {"$set": {"session_id": req.session_id, "profile": profile, "updated_at": datetime.now(timezone.utc).isoformat()}},
-        upsert=True
-    )
-    
+
+    profiles_store[req.session_id] = {
+        "session_id": req.session_id,
+        "profile": profile,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+
     return {"profile": profile, "session_id": req.session_id}
 
 # ── Policies ───────────────────────────────────────────────
@@ -553,24 +551,20 @@ async def get_policies(
     min_salary: Optional[int] = Query(None),
     risk_level: Optional[str] = Query(None),
 ):
-    query = {}
+    policies = list(policies_store)
     if category:
-        query["category"] = category
+        policies = [p for p in policies if p.get("category") == category]
     if sharia_compliant is not None:
-        query["sharia_compliant"] = sharia_compliant
+        policies = [p for p in policies if p.get("sharia_compliant") == sharia_compliant]
     if risk_level:
-        query["risk_level"] = risk_level
-    
-    policies = await db.policies.find(query, {"_id": 0}).to_list(100)
-    
+        policies = [p for p in policies if p.get("risk_level") == risk_level]
     if min_salary:
         policies = [p for p in policies if p.get("min_salary", 0) <= min_salary]
-    
     return {"policies": policies, "count": len(policies)}
 
 @app.get("/api/policies/{policy_id}")
 async def get_policy(policy_id: str):
-    policy = await db.policies.find_one({"policy_id": policy_id}, {"_id": 0})
+    policy = next((p for p in policies_store if p["policy_id"] == policy_id), None)
     if not policy:
         raise HTTPException(status_code=404, detail="Policy not found")
     return {"policy": policy}
@@ -579,64 +573,53 @@ async def get_policy(policy_id: str):
 
 @app.post("/api/policies/recommend")
 async def recommend_policies(req: RecommendRequest):
-    # Get user profile
-    profile_doc = await db.profiles.find_one(
-        {"session_id": req.session_id},
-        {"_id": 0}
-    )
-    
+    profile_doc = profiles_store.get(req.session_id)
+
     if not profile_doc:
         raise HTTPException(status_code=404, detail="No profile found. Please complete the avatar conversation first.")
-    
+
     profile = profile_doc.get("profile", {})
-    
-    # Build query based on profile
-    query = {}
+
+    goal_map = {
+        "insurance": "insurance",
+        "loan": "loan",
+        "investment": "investment",
+        "credit_card": "credit_card",
+        "bank_account": "bank_account",
+        "credit card": "credit_card",
+        "bank account": "bank_account",
+    }
+
+    policies = list(policies_store)
     if req.category:
-        query["category"] = req.category
+        policies = [p for p in policies if p.get("category") == req.category]
     elif profile.get("financial_goal"):
-        goal_map = {
-            "insurance": "insurance",
-            "loan": "loan",
-            "investment": "investment",
-            "credit_card": "credit_card",
-            "bank_account": "bank_account",
-            "credit card": "credit_card",
-            "bank account": "bank_account",
-        }
         mapped = goal_map.get(profile["financial_goal"].lower())
         if mapped:
-            query["category"] = mapped
-    
+            policies = [p for p in policies if p.get("category") == mapped]
+
     if profile.get("sharia_compliant"):
-        query["sharia_compliant"] = True
-    
-    policies = await db.policies.find(query, {"_id": 0}).to_list(100)
-    
-    # Filter by salary
+        policies = [p for p in policies if p.get("sharia_compliant") is True]
+
     salary = profile.get("monthly_salary")
     if salary:
         policies = [p for p in policies if p.get("min_salary", 0) <= salary]
-    
-    # Filter by age
+
     age = profile.get("age")
     if age:
         policies = [p for p in policies if p.get("min_age", 0) <= age <= p.get("max_age", 100)]
-    
+
     if not policies:
         return {"recommendations": [], "explanation": "No matching policies found for your profile.", "profile": profile}
-    
-    # Get AI explanation
+
     groq_messages = [
         {"role": "system", "content": RECOMMENDATION_SYSTEM_PROMPT},
         {"role": "user", "content": f"User Profile:\n{json.dumps(profile, indent=2)}\n\nMatching Policies:\n{json.dumps(policies, indent=2)}\n\nProvide recommendations ranked by relevance."}
     ]
-    
+
     explanation = call_groq(groq_messages)
-    
-    # Sort by rating
     policies.sort(key=lambda x: x.get("rating", 0), reverse=True)
-    
+
     return {
         "recommendations": policies,
         "explanation": explanation,
@@ -652,26 +635,22 @@ async def compare_policies(req: CompareRequest):
         raise HTTPException(status_code=400, detail="Select at least 2 policies to compare")
     if len(req.policy_ids) > 4:
         raise HTTPException(status_code=400, detail="Maximum 4 policies can be compared")
-    
-    policies = []
-    for pid in req.policy_ids:
-        policy = await db.policies.find_one({"policy_id": pid}, {"_id": 0})
-        if policy:
-            policies.append(policy)
-    
+
+    policies = [p for p in policies_store if p["policy_id"] in req.policy_ids]
+
     if len(policies) < 2:
         raise HTTPException(status_code=404, detail="Could not find enough policies to compare")
-    
+
     return {"policies": policies, "count": len(policies)}
 
 # ── Applications ───────────────────────────────────────────
 
 @app.post("/api/applications")
 async def create_application(req: ApplicationRequest):
-    policy = await db.policies.find_one({"policy_id": req.policy_id}, {"_id": 0})
+    policy = next((p for p in policies_store if p["policy_id"] == req.policy_id), None)
     if not policy:
         raise HTTPException(status_code=404, detail="Policy not found")
-    
+
     application = {
         "application_id": f"APP-{uuid.uuid4().hex[:8].upper()}",
         "session_id": req.session_id,
@@ -686,50 +665,73 @@ async def create_application(req: ApplicationRequest):
         ],
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
-    
-    insert_doc = {**application}
-    await db.applications.insert_one(insert_doc)
-    
+
+    applications_store[application["application_id"]] = application
     return {"application": application}
 
 @app.get("/api/applications/{session_id}")
 async def get_applications(session_id: str):
-    apps = await db.applications.find(
-        {"session_id": session_id},
-        {"_id": 0}
-    ).to_list(100)
+    apps = [a for a in applications_store.values() if a["session_id"] == session_id]
     return {"applications": apps, "count": len(apps)}
 
 @app.patch("/api/applications/{application_id}")
 async def update_application(application_id: str, req: ApplicationUpdateRequest):
-    result = await db.applications.update_one(
-        {"application_id": application_id},
-        {
-            "$set": {"status": req.status},
-            "$push": {"status_history": {
-                "status": req.status,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "note": f"Status updated to {req.status}"
-            }}
-        }
-    )
-    if result.matched_count == 0:
+    app_doc = applications_store.get(application_id)
+    if not app_doc:
         raise HTTPException(status_code=404, detail="Application not found")
-    
-    app_doc = await db.applications.find_one(
-        {"application_id": application_id},
-        {"_id": 0}
-    )
+
+    app_doc["status"] = req.status
+    app_doc["status_history"].append({
+        "status": req.status,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "note": f"Status updated to {req.status}"
+    })
     return {"application": app_doc}
+
+# ── Agent Action (system-triggered agent message) ─────────
+
+@app.post("/api/chat/agent-action")
+async def agent_action(req: AgentActionRequest):
+    conversation = conversations_store.get(req.session_id, {})
+
+    groq_messages = [{"role": "system", "content": AVATAR_SYSTEM_PROMPT}]
+    for msg in conversation.get("messages", []):
+        groq_messages.append({"role": msg["role"], "content": msg["content"]})
+
+    if req.action_type == "application_submitted":
+        d = req.action_data
+        hint = (
+            f"[SYSTEM: The user just submitted an application. "
+            f"Application ID: {d.get('application_id')}, "
+            f"Policy: {d.get('policy_name')}, "
+            f"Provider: {d.get('provider')}, "
+            f"Status: submitted. "
+            f"Generate a warm professional confirmation for the user, "
+            f"clearly stating the Application ID and that they can track it in the Application Tracker.]"
+        )
+    else:
+        hint = f"[SYSTEM: {req.action_type} — {json.dumps(req.action_data)}. Acknowledge to the user appropriately.]"
+
+    groq_messages.append({"role": "user", "content": hint})
+    ai_response = call_groq(groq_messages)
+
+    if req.session_id not in conversations_store:
+        conversations_store[req.session_id] = {"session_id": req.session_id, "messages": [], "created_at": datetime.now(timezone.utc).isoformat()}
+    conversations_store[req.session_id]["messages"].append({
+        "role": "assistant",
+        "content": ai_response,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
+
+    return {"response": ai_response, "session_id": req.session_id}
 
 # ── News ───────────────────────────────────────────────────
 
 @app.get("/api/news")
 async def get_news(category: Optional[str] = Query(None)):
-    query = {}
+    news = list(news_store)
     if category:
-        query["category"] = category
-    news = await db.news.find(query, {"_id": 0}).to_list(50)
+        news = [n for n in news if n.get("category") == category]
     return {"news": news, "count": len(news)}
 
 # ── Open Chat ──────────────────────────────────────────────
@@ -747,36 +749,24 @@ Always clarify you're providing educational information, not regulated financial
 
 @app.post("/api/chat/open")
 async def open_chat(req: OpenChatRequest):
-    # Load open chat history
     chat_key = f"open_{req.session_id}"
-    conversation = await db.open_chats.find_one(
-        {"session_id": chat_key},
-        {"_id": 0}
-    )
-    
-    if not conversation:
-        conversation = {
+    if chat_key not in open_chats_store:
+        open_chats_store[chat_key] = {
             "session_id": chat_key,
             "messages": [],
             "created_at": datetime.now(timezone.utc).isoformat(),
         }
-        await db.open_chats.insert_one({**conversation})
-    
+    conversation = open_chats_store[chat_key]
+
     groq_messages = [{"role": "system", "content": OPEN_CHAT_SYSTEM}]
     for msg in conversation["messages"][-20:]:
         groq_messages.append({"role": msg["role"], "content": msg["content"]})
     groq_messages.append({"role": "user", "content": req.message})
-    
+
     ai_response = call_groq(groq_messages)
-    
-    await db.open_chats.update_one(
-        {"session_id": chat_key},
-        {"$push": {"messages": {
-            "$each": [
-                {"role": "user", "content": req.message, "timestamp": datetime.now(timezone.utc).isoformat()},
-                {"role": "assistant", "content": ai_response, "timestamp": datetime.now(timezone.utc).isoformat()}
-            ]
-        }}}
-    )
-    
+
+    now = datetime.now(timezone.utc).isoformat()
+    conversation["messages"].append({"role": "user", "content": req.message, "timestamp": now})
+    conversation["messages"].append({"role": "assistant", "content": ai_response, "timestamp": now})
+
     return {"response": ai_response, "session_id": req.session_id}

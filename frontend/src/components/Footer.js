@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="font-heading font-bold text-lg text-white">Fin-ae</span>
             </div>
             <p className="text-sm text-white/50 leading-relaxed">
-              AI-powered financial assistant helping you compare and choose the best financial products in the UAE.
+              Your smart companion for comparing and choosing the best financial products in the UAE.
             </p>
           </div>
           <div>
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/30">2026 Fin-ae. Built for the UAE market.</p>
-          <p className="text-xs text-white/30">Powered by AI</p>
+          <p className="text-xs text-white/30">Built for the UAE market</p>
         </div>
       </div>
     </footer>
