@@ -27,6 +27,6 @@ SOURCES = [
         "name": "QIC UAE",
         "base_url": "https://www.qicuae.com",
         "page_url": "https://qicuae.com/insurance/home-content-insurance/",
-        "type": ["motor", "travel"]
+        "type": ["health"]
     }
 ]
