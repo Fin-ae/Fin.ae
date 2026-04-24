@@ -7,6 +7,7 @@ function Navbar() {
       <div>
         <Link to="/" style={styles.link}>Home</Link>
         <Link to="/compare" style={styles.link}>Compare</Link>
+        <Link to="/news" style={styles.link}>News</Link>
       </div>
     </nav>
   );

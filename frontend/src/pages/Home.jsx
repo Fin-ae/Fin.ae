@@ -30,6 +30,9 @@ function Home() {
         <button onClick={() => navigate("/compare")} className="mt-6 bg-blue-600 text-white px-6 py-2 rounded">
           Start Comparing
         </button>
+        <button onClick={() => navigate("/news")} className="mt-6 ml-4 bg-slate-800 text-white px-6 py-2 rounded">
+          Browse News
+        </button>
       </div>
       <div className="flex justify-center mt-16 px-4">
         <ErrorBoundary>
