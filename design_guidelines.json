@@ -1,0 +1,92 @@
+{
+  "theme": "Light",
+  "archetype": "1 (Organic & Earthy)",
+  "vibe": "Trust, Growth, Calm, Premium UAE Fintech",
+  "colors": {
+    "background": "#FBFBF9",
+    "surface": "#FFFFFF",
+    "primary": "#0A3224",
+    "primary_hover": "#0F4C3A",
+    "accent": "#D4AF37",
+    "accent_hover": "#B3932E",
+    "text_primary": "#1A1D1C",
+    "text_secondary": "#4A5550",
+    "border": "#E2E6E4",
+    "success": "#22C55E",
+    "warning": "#F59E0B",
+    "error": "#EF4444"
+  },
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "Manrope",
+    "rules": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3": "text-xl sm:text-2xl font-semibold",
+      "body": "text-base leading-relaxed",
+      "labels": "text-xs tracking-[0.2em] uppercase font-semibold text-[#4A5550]"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing, High Contrast, Bento Grid Protocol for data.",
+    "border_radius": "rounded-lg (8px max)",
+    "container_padding": "p-8 md:p-12",
+    "grid_gaps": "gap-6 md:gap-8"
+  },
+  "surface_strategies": {
+    "headers": "Glassmorphism (Crystal) - backdrop-blur-xl bg-white/70 border-b border-white/40 shadow-sm",
+    "cards": "Flat background, 1px subtle border (#E2E6E4), no shadow by default. Hover: -translate-y-1 shadow-lg",
+    "tables": "Grid Borders (Technical) - border-collapse layout, border-r border-b border-border/40 for items"
+  },
+  "components": {
+    "hero_section": "Bento Grid (Mode A). Asymmetrical layout. Avatar takes dominant visual column.",
+    "avatar_interaction_panel": "Floating sidebar or chat modal with Glassmorphism overlay. Soft ambient shadow.",
+    "policy_comparison_table": "Shadcn Table heavily customized. Grid Borders approach. No excessive card usage.",
+    "application_tracker": "Vertical step list. Active step uses primary color (#0A3224), completed uses accent (#D4AF37).",
+    "news_section": "Editorial bento grid. Images must have max 80vh limit on mobile. Hover state scales image inside container.",
+    "forms": "Shadcn Form/Input. Solid white background, 1px border. Focus state: ring-2 ring-[#0A3224]/20 border-[#0A3224]"
+  },
+  "motion": {
+    "avatar": "Floating/Breathing effect using framer-motion (y: [0, -10, 0], transition: {repeat: Infinity, duration: 4}).",
+    "lists": "Staggered entrance animations.",
+    "hover": "transition-transform duration-200 ease-out"
+  },
+  "media": {
+    "avatar_character": {
+      "url": "https://images.unsplash.com/photo-1772371272218-d39eca1efdeb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwxfHxmcmllbmRseSUyMDNkJTIwY2hhcmFjdGVyJTIwYXZhdGFyfGVufDB8fHx8MTc3NjQyODEzOXww&ixlib=rb-4.1.0&q=85",
+      "description": "Friendly character avatar"
+    },
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1759485683311-0bcfa34eb6b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMHNhbmQlMjB0ZXh0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzY0MjgxMzl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract sand texture background for hero sections"
+    },
+    "dubai_skyline_news_1": {
+      "url": "https://images.unsplash.com/photo-1726533765275-a69cfd7f9897?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwxfHxkdWJhaSUyMHNreWxpbmUlMjBmaW5hbmNpYWwlMjBkaXN0cmljdHxlbnwwfHx8fDE3NzY0MjgxMzB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Dubai skyline for news section"
+    },
+    "dubai_skyline_news_2": {
+      "url": "https://images.unsplash.com/photo-1768069794857-9306ac167c6e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwyfHxkdWJhaSUyMHNreWxpbmUlMjBmaW5hbmNpYWwlMjBkaXN0cmljdHxlbnwwfHx8fDE3NzY0MjgxMzB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Dubai skyline illuminated at dusk for news section"
+    },
+    "credit_card_mockup": {
+      "url": "https://images.unsplash.com/photo-1687720106084-d6e235ad226c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjcmVkaXQlMjBjYXJkJTIwbW9ja3VwfGVufDB8fHx8MTc3NjQyODEzMHww&ixlib=rb-4.1.0&q=85",
+      "description": "Modern credit card mockup for products"
+    },
+    "arabic_business": {
+      "url": "https://images.unsplash.com/photo-1720722023471-61abfe6f36d1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxhcmFiaWMlMjBidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzc2NDI4MTMwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Arabic business meeting for about/community section"
+    }
+  },
+  "testing_attributes": {
+    "rule": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case."
+  },
+  "instructions_to_main_agent": [
+    "Follow this document precisely. Do not invent new colors outside this palette.",
+    "Install and use 'lucide-react' for icons.",
+    "Use 'framer-motion' for avatar and list animations.",
+    "Use Shadcn UI components but heavily customize them per these surface strategies.",
+    "NEVER use placeholder images, use the URLs provided in the media section.",
+    "The avatar image should be masked cleanly with a transparent background in CSS if needed, or placed on the sand texture.",
+    "Use 'Cabinet Grotesk' via fontsource or Google Fonts for all headings, and 'Manrope' for body."
+  ]
+}
