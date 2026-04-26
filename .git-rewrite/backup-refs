@@ -1,0 +1,11 @@
+5586fac88ff6412b245380dc298baa08cff06522 commit	refs/heads/clean-state
+a9f68d8db6eab1216f3c1ae688dfeb1dd18a369a commit	refs/heads/main
+a9f68d8db6eab1216f3c1ae688dfeb1dd18a369a commit	refs/remotes/origin/HEAD
+5dd646b4ec2220a4f8ad33798519dc3d90311a2b commit	refs/remotes/origin/clean-main
+bd646b6153faca89fd284a26ff7131bbaf878e4e commit	refs/remotes/origin/clean-state
+3ce8eec2c9d54fad2e93462cdacc995f1f4dcda1 commit	refs/remotes/origin/feature/database-schema
+2f959e80f60c41ef8b7e54dffcc21d16a1c64d3f commit	refs/remotes/origin/frontend
+a9f68d8db6eab1216f3c1ae688dfeb1dd18a369a commit	refs/remotes/origin/main
+ab2e3165651e9524d9ff87a073735d2c6f27c795 commit	refs/remotes/origin/master
+7ac3843cb055d04b3dc17989ac7f745d2dca2e4f commit	refs/remotes/origin/news/integration
+04c871e1b866fb0dfdf8a20954910f7e4fa1a060 commit	refs/remotes/origin/scraping/insurance
