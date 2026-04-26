@@ -973,7 +973,7 @@ async def fetch_live_news(page: int = 1) -> list:
                 "conceptUri": "http://en.wikipedia.org/wiki/Finance",
                 "lang": "eng",
                 "articlesPage": page,
-                "articlesCount": 10,
+                "articlesCount": 30,
                 "articlesSortBy": "date",
                 "articlesSortByAsc": False,
                 "resultType": "articles",
@@ -992,8 +992,19 @@ async def fetch_live_news(page: int = 1) -> list:
 
     print(f"[News] Fetched {len(raw_articles)} raw articles from EventRegistry")
 
-    # Use up to 6 articles with non-empty bodies
-    usable = [a for a in raw_articles if (a.get("body") or a.get("title"))][:6]
+    usable = []
+    seen_titles = set()
+    for a in raw_articles:
+        if not (a.get("body") or a.get("title")):
+            continue
+        title = (a.get("title") or "").strip().lower()
+        if title:
+            if title in seen_titles:
+                continue
+            seen_titles.add(title)
+        usable.append(a)
+        if len(usable) >= 6:
+            break
 
     articles_text = "\n".join([
         f"{i+1}. Title: {a.get('title', '')}\nBody: {(a.get('body') or '')[:400]}"
