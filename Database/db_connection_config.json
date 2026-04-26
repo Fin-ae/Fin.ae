@@ -1,0 +1,58 @@
+{
+    "banks": [
+        {
+            "name": "HSBC UAE",
+            "url": "https://www.hsbc.ae"
+        },
+        {
+            "name": "Emirates NBD",
+            "url": "https://www.emiratesnbd.com"
+        },
+        {
+            "name": "FAB",
+            "url": "https://www.bankfab.com"
+        },
+        {
+            "name": "ADCB",
+            "url": "https://www.adcb.com"
+        },
+        {
+            "name": "Mashreq",
+            "url": "https://www.mashreq.com"
+        },
+        {
+            "name": "DIB",
+            "url": "https://www.dib.ae"
+        },
+        {
+            "name": "RAKBank",
+            "url": "https://www.rakbank.ae"
+        },
+        {
+            "name": "CBD",
+            "url": "https://www.cbd.ae"
+        }
+    ],
+    "products": [
+        "savings_account",
+        "current_account",
+        "fixed_deposit",
+        "personal_loan",
+        "credit_card",
+        "mortgage"
+    ],
+    "fields_schema": {
+        "bank_name": "string",
+        "product_type": "string",
+        "product_name": "string",
+        "interest_rate_pct": "float",
+        "min_balance_aed": "float",
+        "max_balance_aed": "float",
+        "currency": "string",
+        "tenure_months": "int",
+        "fees_aed": "float",
+        "eligibility": "string",
+        "source_url": "string",
+        "scraped_at": "string"
+    }
+}
