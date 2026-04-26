@@ -1,0 +1,272 @@
+[
+  {
+    "policy_id": "ins-001",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Basic Takaful Plan",
+    "provider": "Takaful Emarat",
+    "description": "Entry-level Sharia-compliant health insurance offering inpatient and outpatient coverage with a basic hospital network. Suitable for UAE residents and families seeking affordable Takaful protection.",
+    "min_salary": 3000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 208,
+    "annual_cost": 2500,
+    "benefits": [
+      "Inpatient coverage",
+      "Outpatient (20% copay)",
+      "Basic hospital network"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": true,
+    "rating": 3.8,
+    "features": {
+      "coverage_limit": "AED 250,000",
+      "deductible": "AED 300",
+      "network": "Basic UAE hospital network",
+      "premium_range": "AED 2,500 – 4,800",
+      "eligibility": "Individuals, families, UAE residents"
+    }
+  },
+  {
+    "policy_id": "ins-002",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Enhanced Takaful Plan",
+    "provider": "Takaful Emarat",
+    "description": "Mid-tier Sharia-compliant health plan offering broader coverage including maternity, dental, and optical benefits for individuals and families in the UAE.",
+    "min_salary": 6000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 458,
+    "annual_cost": 5500,
+    "benefits": [
+      "Inpatient and outpatient",
+      "Maternity (partial)",
+      "Dental & optical included"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": true,
+    "rating": 4.1,
+    "features": {
+      "coverage_limit": "AED 500,000",
+      "deductible": "AED 500",
+      "network": "Extended UAE hospital network",
+      "premium_range": "AED 5,500 – 12,000",
+      "eligibility": "Individuals, families"
+    }
+  },
+  {
+    "policy_id": "ins-003",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Basic Health Plan (Abu Dhabi)",
+    "provider": "Daman",
+    "description": "Essential Benefits Plan (EBP) designed for low-income residents and domestic workers in Abu Dhabi. Covers basic inpatient, emergency care, and essential medicines as mandated by UAE law.",
+    "min_salary": 0,
+    "min_age": 18,
+    "max_age": 60,
+    "risk_level": "low",
+    "monthly_cost": 67,
+    "annual_cost": 800,
+    "benefits": [
+      "Inpatient coverage",
+      "Emergency care",
+      "Medicines (basic level)"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 3.5,
+    "features": {
+      "coverage_limit": "AED 150,000",
+      "deductible": "AED 200",
+      "network": "Essential UAE network",
+      "premium_range": "AED 800 – 3,000",
+      "eligibility": "Low-income residents, domestic workers"
+    }
+  },
+  {
+    "policy_id": "ins-004",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Flexi / Individual & Family Plans",
+    "provider": "Daman",
+    "description": "Comprehensive and customizable health insurance plan for UAE residents and families. Includes full medical coverage with access to a large provider network of 3,000+ hospitals and clinics.",
+    "min_salary": 5000,
+    "min_age": 18,
+    "max_age": 70,
+    "risk_level": "low",
+    "monthly_cost": 417,
+    "annual_cost": 5000,
+    "benefits": [
+      "Full medical coverage",
+      "Large UAE network (3000+ providers)",
+      "Customizable modules",
+      "Maternity coverage",
+      "Emergency care"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.4,
+    "features": {
+      "coverage_limit": "AED 1,000,000",
+      "deductible": "AED 500",
+      "network": "3000+ providers across UAE",
+      "premium_range": "From AED 5,000+",
+      "eligibility": "UAE residents, families"
+    }
+  },
+  {
+    "policy_id": "ins-005",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Global Health Plan – Comprehensive",
+    "provider": "AXA Global Healthcare (via Daman)",
+    "description": "High-coverage international health plan for corporate employees and expats, offering worldwide coverage including cancer care, maternity, medical evacuation, and chronic condition management.",
+    "min_salary": 12000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 1250,
+    "annual_cost": 15000,
+    "benefits": [
+      "Worldwide coverage",
+      "Cancer care",
+      "Maternity benefits",
+      "Medical evacuation",
+      "Outpatient coverage",
+      "Chronic condition management"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.6,
+    "features": {
+      "coverage_limit": "AED 10,000,000",
+      "deductible": "AED 1,000",
+      "network": "Global provider network",
+      "premium_range": "From AED 15,000+",
+      "eligibility": "Corporate employees, expats"
+    }
+  },
+  {
+    "policy_id": "ins-006",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Prestige / Prestige Plus",
+    "provider": "AXA Global Healthcare (via Daman)",
+    "description": "Elite-tier global health insurance for high-income expats and corporates. Offers access to 1.9 million providers worldwide with premium benefits including dental, optical, infertility, and advanced treatments.",
+    "min_salary": 25000,
+    "min_age": 18,
+    "max_age": 70,
+    "risk_level": "low",
+    "monthly_cost": 3500,
+    "annual_cost": 42000,
+    "benefits": [
+      "Global access (1.9M providers)",
+      "Dental & optical",
+      "Infertility treatment",
+      "Advanced medical treatments",
+      "VIP concierge health services"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.9,
+    "features": {
+      "coverage_limit": "AED 40,000,000",
+      "deductible": "AED 2,000",
+      "network": "1.9 million providers globally",
+      "premium_range": "Premium tier (custom pricing)",
+      "eligibility": "High-income expats, corporates"
+    }
+  },
+  {
+    "policy_id": "ins-007",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Individual / Group Medical Plans",
+    "provider": "Dubai Insurance",
+    "description": "Flexible health insurance plans for individuals, SMEs, and corporates in Dubai. Ranges from basic to comprehensive coverage with optional maternity and mental health add-ons.",
+    "min_salary": 4000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 333,
+    "annual_cost": 4000,
+    "benefits": [
+      "Inpatient coverage",
+      "Outpatient coverage",
+      "Optional maternity",
+      "Mental health support (select plans)"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.0,
+    "features": {
+      "coverage_limit": "AED 500,000",
+      "deductible": "AED 400",
+      "network": "Dubai & UAE hospital network",
+      "premium_range": "AED 4,000 – 15,000+",
+      "eligibility": "Individuals, SMEs, corporates"
+    }
+  },
+  {
+    "policy_id": "ins-008",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Essential Benefits Plan (EBP)",
+    "provider": "QIC UAE",
+    "description": "Mandatory minimum health coverage compliant with Dubai law, designed for low-salary workers earning up to AED 4,000/month. Covers basic inpatient, emergency, and limited outpatient services.",
+    "min_salary": 0,
+    "min_age": 18,
+    "max_age": 60,
+    "risk_level": "low",
+    "monthly_cost": 50,
+    "annual_cost": 600,
+    "benefits": [
+      "Basic inpatient coverage",
+      "Emergency care",
+      "Limited outpatient services"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 3.3,
+    "features": {
+      "coverage_limit": "AED 150,000",
+      "deductible": "AED 100",
+      "network": "Mandatory Dubai EBP network",
+      "premium_range": "AED 600 – 1,500",
+      "eligibility": "Low salary workers (≤ AED 4,000/month)"
+    }
+  },
+  {
+    "policy_id": "ins-009",
+    "category": "insurance",
+    "sub_category": "health",
+    "name": "Enhanced Medical Plans",
+    "provider": "QIC UAE",
+    "description": "Customizable enhanced health insurance plans for employers and SMEs in the UAE, offering higher limits and a wider provider network beyond the mandatory EBP requirements.",
+    "min_salary": 4000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 500,
+    "annual_cost": 6000,
+    "benefits": [
+      "Higher coverage limits",
+      "Wider provider network",
+      "Customizable benefit modules",
+      "Inpatient & outpatient"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.0,
+    "features": {
+      "coverage_limit": "AED 500,000",
+      "deductible": "AED 300",
+      "network": "Wide UAE network",
+      "premium_range": "Custom pricing",
+      "eligibility": "Employers, SMEs"
+    }
+  }
+]

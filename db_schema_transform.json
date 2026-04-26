@@ -1,0 +1,66 @@
+{
+    "step": "cleaning",
+    "functions": {
+        "standardize_formats": {
+            "description": "Converts raw records to DataFrame and normalizes field formats",
+            "string_processing": {
+                "trim_whitespace": true,
+                "bank_name_case": "title_case",
+                "product_type_format": "lowercase_with_underscores",
+                "currency_format": "uppercase"
+            },
+            "numeric_processing": {
+                "convert_to_numeric": true,
+                "fill_na_with": 0.0,
+                "rounding": 2,
+                "tenure_months_integer": true,
+                "max_balance_nullable": true
+            },
+            "timestamp_processing": {
+                "format": "ISO_8601_UTC",
+                "fallback": "current_utc_timestamp"
+            },
+            "data_quality_rules": [
+                {
+                    "condition": "interest_rate_pct > 50",
+                    "flag": "suspect_rate"
+                },
+                {
+                    "condition": "min_balance_aed < 0",
+                    "flag": "negative_balance"
+                },
+                {
+                    "condition": "product_name length < 2",
+                    "flag": "missing_name"
+                }
+            ]
+        },
+        "remove_duplicates": {
+            "description": "Removes duplicate records keeping the latest",
+            "deduplication_keys": [
+                "bank_name",
+                "product_type",
+                "product_name",
+                "interest_rate_pct"
+            ],
+            "sorting": {
+                "field": "scraped_at",
+                "order": "descending"
+            },
+            "keep": "first",
+            "reset_index": true
+        },
+        "clean": {
+            "description": "Main function combining standardization and deduplication",
+            "steps": [
+                "standardize_formats",
+                "remove_duplicates"
+            ],
+            "outputs": [
+                "clean_dataframe",
+                "summary_by_product_type",
+                "data_quality_flags"
+            ]
+        }
+    }
+}

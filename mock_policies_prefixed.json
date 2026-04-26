@@ -1,0 +1,278 @@
+[
+  {
+    "policy_id": "cc-001",
+    "category": "credit_cards",
+    "schema_label": "policies_credit_cards",
+    "sub_category": "cashback",
+    "name": "Emirates NBD Cashback Plus Credit Card",
+    "provider": "Emirates NBD",
+    "description": "A cashback credit card offering rewards on groceries, fuel, dining, and online spending.",
+    "min_salary": 5000,
+    "min_age": 21,
+    "max_age": 65,
+    "risk_level": "medium",
+    "monthly_cost": 0,
+    "annual_cost": 313,
+    "benefits": [
+      "Cashback on everyday spending",
+      "Dining discounts",
+      "Travel offers",
+      "Contactless payments",
+      "Purchase protection"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.4,
+    "features": {
+      "credit_limit": "Up to 3x monthly salary",
+      "cashback_rate": "Up to 5%",
+      "annual_fee": "AED 313",
+      "interest_rate": "3.25% monthly"
+    }
+  },
+  {
+    "policy_id": "cc-002",
+    "category": "credit_cards",
+    "schema_label": "policies_credit_cards",
+    "sub_category": "travel",
+    "name": "ADCB Traveller Credit Card",
+    "provider": "ADCB",
+    "description": "A travel-focused credit card with airport lounge access, travel discounts, and hotel offers.",
+    "min_salary": 10000,
+    "min_age": 21,
+    "max_age": 65,
+    "risk_level": "medium",
+    "monthly_cost": 0,
+    "annual_cost": 1050,
+    "benefits": [
+      "Airport lounge access",
+      "Hotel discounts",
+      "Travel insurance",
+      "Flight offers",
+      "Reward points"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.6,
+    "features": {
+      "credit_limit": "Up to 4x monthly salary",
+      "travel_discount": "Up to 20%",
+      "annual_fee": "AED 1,050",
+      "interest_rate": "3.15% monthly"
+    }
+  },
+  {
+    "policy_id": "cc-003",
+    "category": "credit_cards",
+    "schema_label": "policies_credit_cards",
+    "sub_category": "islamic",
+    "name": "Dubai Islamic Bank Al Islami Credit Card",
+    "provider": "Dubai Islamic Bank",
+    "description": "A Sharia-compliant credit card offering lifestyle rewards and flexible payment options.",
+    "min_salary": 5000,
+    "min_age": 21,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 0,
+    "annual_cost": 250,
+    "benefits": [
+      "Sharia-compliant structure",
+      "Lifestyle rewards",
+      "Dining offers",
+      "Flexible repayments",
+      "Secure online payments"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": true,
+    "rating": 4.3,
+    "features": {
+      "credit_limit": "Up to 3x monthly salary",
+      "profit_rate": "3.10% monthly",
+      "annual_fee": "AED 250",
+      "reward_program": "Al Islami Rewards"
+    }
+  },
+  {
+    "policy_id": "loan-001",
+    "category": "loans",
+    "schema_label": "policies_loans",
+    "sub_category": "personal",
+    "name": "Mashreq Personal Loan",
+    "provider": "Mashreq",
+    "description": "A personal loan for salaried UAE residents with flexible repayment and fast approval.",
+    "min_salary": 7000,
+    "min_age": 21,
+    "max_age": 60,
+    "risk_level": "medium",
+    "monthly_cost": 1200,
+    "annual_cost": 14400,
+    "benefits": [
+      "Fast approval",
+      "Flexible repayment",
+      "Salary transfer option",
+      "Top-up facility",
+      "Competitive interest rate"
+    ],
+    "tenure_months": 48,
+    "sharia_compliant": false,
+    "rating": 4.2,
+    "features": {
+      "loan_amount": "Up to AED 500,000",
+      "interest_rate": "5.99% reducing",
+      "processing_fee": "1% of loan amount",
+      "early_settlement_fee": "1% of outstanding balance"
+    }
+  },
+  {
+    "policy_id": "loan-002",
+    "category": "loans",
+    "schema_label": "policies_loans",
+    "sub_category": "auto",
+    "name": "RAKBANK Auto Loan",
+    "provider": "RAKBANK",
+    "description": "Vehicle financing for new and used cars with flexible repayment plans.",
+    "min_salary": 5000,
+    "min_age": 21,
+    "max_age": 65,
+    "risk_level": "medium",
+    "monthly_cost": 950,
+    "annual_cost": 11400,
+    "benefits": [
+      "New and used car financing",
+      "Flexible tenure",
+      "Quick approval",
+      "Competitive rates",
+      "Low processing fee"
+    ],
+    "tenure_months": 60,
+    "sharia_compliant": false,
+    "rating": 4.1,
+    "features": {
+      "loan_amount": "Up to AED 350,000",
+      "interest_rate": "3.49% flat",
+      "down_payment": "20%",
+      "processing_fee": "AED 500"
+    }
+  },
+  {
+    "policy_id": "loan-003",
+    "category": "loans",
+    "schema_label": "policies_loans",
+    "sub_category": "islamic_personal_finance",
+    "name": "Dubai Islamic Bank Personal Finance",
+    "provider": "Dubai Islamic Bank",
+    "description": "Sharia-compliant personal finance for salaried customers in the UAE.",
+    "min_salary": 5000,
+    "min_age": 21,
+    "max_age": 60,
+    "risk_level": "low",
+    "monthly_cost": 1100,
+    "annual_cost": 13200,
+    "benefits": [
+      "Sharia-compliant finance",
+      "Flexible repayment",
+      "Quick approval",
+      "Salary transfer option",
+      "High finance amount"
+    ],
+    "tenure_months": 48,
+    "sharia_compliant": true,
+    "rating": 4.5,
+    "features": {
+      "finance_amount": "Up to AED 750,000",
+      "profit_rate": "From 4.99%",
+      "processing_fee": "1%",
+      "salary_transfer_required": "Yes"
+    }
+  },
+  {
+    "policy_id": "ins-001",
+    "category": "insurance",
+    "schema_label": "policies_insurance",
+    "sub_category": "health",
+    "name": "ADNIC Premium Health Cover",
+    "provider": "Abu Dhabi National Insurance Company",
+    "description": "Comprehensive health insurance with worldwide coverage, dental, optical, and maternity benefits.",
+    "min_salary": 8000,
+    "min_age": 18,
+    "max_age": 65,
+    "risk_level": "low",
+    "monthly_cost": 450,
+    "annual_cost": 5000,
+    "benefits": [
+      "Worldwide coverage",
+      "Dental & optical",
+      "Maternity benefits",
+      "No claim bonus",
+      "Wellness programs"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.5,
+    "features": {
+      "coverage_limit": "AED 1,000,000",
+      "deductible": "AED 500",
+      "network": "300+ hospitals"
+    }
+  },
+  {
+    "policy_id": "ins-002",
+    "category": "insurance",
+    "schema_label": "policies_insurance",
+    "sub_category": "motor",
+    "name": "Oman Insurance Comprehensive Motor Cover",
+    "provider": "Oman Insurance",
+    "description": "Comprehensive car insurance with roadside assistance, agency repair, and third-party liability.",
+    "min_salary": 4000,
+    "min_age": 18,
+    "max_age": 70,
+    "risk_level": "low",
+    "monthly_cost": 180,
+    "annual_cost": 2100,
+    "benefits": [
+      "Roadside assistance",
+      "Agency repair",
+      "Third-party liability",
+      "Personal accident cover",
+      "Off-road cover"
+    ],
+    "tenure_months": 12,
+    "sharia_compliant": false,
+    "rating": 4.2,
+    "features": {
+      "coverage_limit": "Market value of vehicle",
+      "deductible": "AED 350",
+      "roadside_assistance": "24/7"
+    }
+  },
+  {
+    "policy_id": "ins-003",
+    "category": "insurance",
+    "schema_label": "policies_insurance",
+    "sub_category": "life",
+    "name": "Takaful Life Protection Plan",
+    "provider": "Salama Islamic Arab Insurance",
+    "description": "Sharia-compliant life protection plan with family financial security benefits.",
+    "min_salary": 6000,
+    "min_age": 18,
+    "max_age": 60,
+    "risk_level": "low",
+    "monthly_cost": 300,
+    "annual_cost": 3600,
+    "benefits": [
+      "Family protection",
+      "Sharia-compliant structure",
+      "Flexible contribution",
+      "Critical illness option",
+      "Long-term cover"
+    ],
+    "tenure_months": 120,
+    "sharia_compliant": true,
+    "rating": 4.4,
+    "features": {
+      "coverage_limit": "AED 500,000",
+      "contribution": "Monthly",
+      "critical_illness_cover": "Optional"
+    }
+  }
+]
