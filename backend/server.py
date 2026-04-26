@@ -972,8 +972,9 @@ async def fetch_live_news(page: int = 1) -> list:
                 "keywordOper": "or",
                 "conceptUri": "http://en.wikipedia.org/wiki/Finance",
                 "lang": "eng",
-                "articlesPage": page,
-                "articlesCount": 30,
+                # Always fetch page 1 from API, but get 50 articles to support our local pagination
+                "articlesPage": 1,
+                "articlesCount": 50,
                 "articlesSortBy": "date",
                 "articlesSortByAsc": False,
                 "resultType": "articles",
@@ -992,7 +993,8 @@ async def fetch_live_news(page: int = 1) -> list:
 
     print(f"[News] Fetched {len(raw_articles)} raw articles from EventRegistry")
 
-    usable = []
+    # Deduplicate all fetched articles
+    unique_articles = []
     seen_titles = set()
     for a in raw_articles:
         if not (a.get("body") or a.get("title")):
@@ -1002,9 +1004,16 @@ async def fetch_live_news(page: int = 1) -> list:
             if title in seen_titles:
                 continue
             seen_titles.add(title)
-        usable.append(a)
-        if len(usable) >= 6:
-            break
+        unique_articles.append(a)
+
+    # Implement local pagination
+    start_idx = (page - 1) * 6
+    end_idx = start_idx + 6
+    usable = unique_articles[start_idx:end_idx]
+
+    if not usable:
+        print(f"[News] No articles left for page {page}")
+        return []
 
     articles_text = "\n".join([
         f"{i+1}. Title: {a.get('title', '')}\nBody: {(a.get('body') or '')[:400]}"
@@ -1048,7 +1057,7 @@ async def fetch_live_news(page: int = 1) -> list:
         body = (article.get("body") or "")
         url = article.get("url", "")
         news_items.append({
-            "news_id": f"live-{i + 1}",
+            "news_id": f"live-p{page}-{i + 1}",
             "title": article.get("title", ""),
             "summary": enr.get("summary") or (body[:250] + "..." if len(body) > 250 else body),
             "category": category,
