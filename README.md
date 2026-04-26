@@ -7,6 +7,7 @@ An AI-powered financial product comparison and lead generation platform built fo
 ## Features
 
 - **AI Financial Assistant** — Conversational chat powered by Groq (Llama 3.3 70B) that profiles users, answers financial questions, and recommends suitable products
+- **Dynamic Product Catalog Injection** — The AI dynamically fetches and incorporates real MongoDB dummy policies into its context window, eliminating hallucinations when answering specific queries
 - **Product Recommendations** — Personalised product suggestions filtered by salary, age, residency status, risk appetite, and Sharia compliance
 - **Side-by-Side Comparison** — Compare multiple financial products across key attributes in a structured table
 - **Application Tracker** — Submit callback requests and track application status per session

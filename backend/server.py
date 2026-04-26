@@ -73,7 +73,7 @@ conversations_store: dict = {}
 profiles_store: dict = {}
 open_chats_store: dict = {}
 
-_news_cache: dict = {"articles": [], "fetched_at": None}
+_news_cache: dict = {}
 
 CATEGORY_IMAGE_MAP = {
     "monetary_policy": "dubai_skyline_news_1",
@@ -927,6 +927,7 @@ You must collect the following pieces of information **one question at a time**,
 - **Never ask more than one question per message**
 
 ## Critical Rules
+- **ABSOLUTELY NO RECOMMENDATIONS YET:** Never show, list, or suggest any specific financial products or options until ALL 10 questions have been answered. Your current sole purpose is to gather information.
 - Never repeat a question the user has already answered
 - Track all provided information across the conversation carefully
 - When the user asks about a specific product or policy mentioned, give a concise factual summary"""
@@ -961,22 +962,17 @@ Keep responses professional and concise. Never provide regulated financial advic
 
 # ─── Live News Fetcher ─────────────────────────────────────
 
-async def fetch_live_news() -> list:
+async def fetch_live_news(page: int = 1) -> list:
     async with httpx.AsyncClient(timeout=25.0) as client:
         resp = await client.post(
             NEWS_API_URL,
             json={
                 "action": "getArticles",
-                "keyword": [
-                    "UAE banking", "UAE finance", "UAE insurance",
-                    "UAE investment", "UAE mortgage", "UAE loan",
-                    "Dubai real estate", "Abu Dhabi economy",
-                    "UAE interest rate", "UAE central bank"
-                ],
-                "keywordOper": "OR",
-                "keywordLoc": "body,title",
+                "keyword": ["UAE", "Dubai", "Abu Dhabi"],
+                "keywordOper": "or",
+                "conceptUri": "http://en.wikipedia.org/wiki/Finance",
                 "lang": "eng",
-                "articlesPage": 1,
+                "articlesPage": page,
                 "articlesCount": 10,
                 "articlesSortBy": "date",
                 "articlesSortByAsc": False,
@@ -1123,7 +1119,13 @@ async def chat_message(req: ChatMessageRequest):
         }
     conversation = conversations_store[req.session_id]
 
-    groq_messages = [{"role": "system", "content": AVATAR_SYSTEM_PROMPT}]
+    all_policies = await _find_policies({})
+    catalog_lines = [f"- {p.get('name', 'Unknown')} ({p.get('category', 'unknown')})" for p in all_policies]
+    catalog_text = "\n".join(catalog_lines)
+    
+    dynamic_system_prompt = AVATAR_SYSTEM_PROMPT + f"\n\n**Available Product Catalog (From MongoDB):**\n{catalog_text}\n\nNOTE: You now have access to this real database. However, you MUST STILL follow the rule to NEVER recommend any of these products until ALL 10 questions are answered!"
+
+    groq_messages = [{"role": "system", "content": dynamic_system_prompt}]
     for msg in conversation["messages"]:
         groq_messages.append({"role": msg["role"], "content": msg["content"]})
     groq_messages.append({"role": "user", "content": req.message})
@@ -1474,27 +1476,29 @@ async def agent_action(req: AgentActionRequest):
 # ── News ───────────────────────────────────────────────────
 
 @app.get("/api/news")
-async def get_news(category: Optional[str] = Query(None)):
+async def get_news(category: Optional[str] = Query(None), page: int = Query(1)):
     global _news_cache
 
     now_ts = datetime.now(timezone.utc).timestamp()
+    cache_entry = _news_cache.get(page, {"articles": [], "fetched_at": None})
     cache_stale = (
-        _news_cache["fetched_at"] is None
-        or (now_ts - _news_cache["fetched_at"]) >= NEWS_CACHE_TTL
+        cache_entry["fetched_at"] is None
+        or (now_ts - cache_entry["fetched_at"]) >= NEWS_CACHE_TTL
     )
 
     is_live = False
     if cache_stale and NEWS_API_KEY:
         try:
-            articles = await fetch_live_news()
+            articles = await fetch_live_news(page)
             if articles:
-                _news_cache = {"articles": articles, "fetched_at": now_ts}
+                _news_cache[page] = {"articles": articles, "fetched_at": now_ts}
+                cache_entry = _news_cache[page]
                 is_live = True
         except Exception as e:
             print(f"[News] Live fetch failed: {e}")
 
-    if _news_cache["articles"]:
-        news = _news_cache["articles"]
+    if cache_entry.get("articles"):
+        news = cache_entry["articles"]
         is_live = True
     else:
         news = list(news_store)
@@ -1503,11 +1507,11 @@ async def get_news(category: Optional[str] = Query(None)):
         news = [n for n in news if n.get("category") == category]
 
     fetched_at = (
-        datetime.fromtimestamp(_news_cache["fetched_at"], tz=timezone.utc).isoformat()
-        if _news_cache["fetched_at"]
+        datetime.fromtimestamp(cache_entry["fetched_at"], tz=timezone.utc).isoformat()
+        if cache_entry.get("fetched_at")
         else None
     )
-    return {"news": news, "count": len(news), "is_live": is_live, "fetched_at": fetched_at}
+    return {"news": news, "count": len(news), "is_live": is_live, "fetched_at": fetched_at, "page": page, "total_pages": 4}
 
 # ── Open Chat ──────────────────────────────────────────────
 
@@ -1533,7 +1537,13 @@ async def open_chat(req: OpenChatRequest):
         }
     conversation = open_chats_store[chat_key]
 
-    groq_messages = [{"role": "system", "content": OPEN_CHAT_SYSTEM}]
+    all_policies = await _find_policies({})
+    catalog_lines = [f"- {p.get('name', 'Unknown')} ({p.get('category', 'unknown')})" for p in all_policies]
+    catalog_text = "\n".join(catalog_lines)
+    
+    dynamic_system_prompt = OPEN_CHAT_SYSTEM + f"\n\n**Available Product Catalog (From MongoDB):**\n{catalog_text}\n\nYou can mention these products if relevant."
+
+    groq_messages = [{"role": "system", "content": dynamic_system_prompt}]
     for msg in conversation["messages"][-20:]:
         groq_messages.append({"role": msg["role"], "content": msg["content"]})
     groq_messages.append({"role": "user", "content": req.message})

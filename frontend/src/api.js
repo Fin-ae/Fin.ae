@@ -54,8 +54,8 @@ export const updateApplicationStatus = (application_number, status) =>
   API.patch(`/api/applications/${application_number}`, { status });
 
 // ── News ──────────────────────────────────────────────────
-export const getNews = (category) =>
-  API.get('/api/news', { params: category ? { category } : {} });
+export const getNews = (category, page = 1) =>
+  API.get('/api/news', { params: { ...(category ? { category } : {}), page } });
 
 // ── Open Chat ─────────────────────────────────────────────
 export const openChat = (session_id, message) =>

@@ -43,19 +43,22 @@ export default function NewsSection() {
   const [fetchedAt, setFetchedAt] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    loadNews();
-  }, []);
+    loadNews(currentPage);
+  }, [currentPage]);
 
-  const loadNews = async () => {
+  const loadNews = async (page = 1) => {
     setLoading(true);
     setError(false);
     try {
-      const res = await getNews();
+      const res = await getNews(null, page);
       setNews(res.data.news);
       setIsLive(res.data.is_live || false);
       setFetchedAt(res.data.fetched_at || null);
+      setTotalPages(res.data.total_pages || 1);
     } catch (err) {
       console.error('Failed to load news:', err);
       setError(true);
@@ -97,7 +100,7 @@ export default function NewsSection() {
             </span>
           )}
           <button
-            onClick={loadNews}
+            onClick={() => loadNews(currentPage)}
             disabled={loading}
             className="text-xs font-semibold text-primary hover:underline disabled:opacity-40"
           >
@@ -108,7 +111,7 @@ export default function NewsSection() {
 
       {error && (
         <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-6">
-          Could not load news. <button onClick={loadNews} className="underline font-semibold">Try again</button>
+          Could not load news. <button onClick={() => loadNews(currentPage)} className="underline font-semibold">Try again</button>
         </p>
       )}
 
@@ -176,6 +179,24 @@ export default function NewsSection() {
               </motion.article>
             ))}
       </div>
+      
+      {!loading && totalPages > 1 && (
+        <div className="mt-10 flex justify-center items-center gap-2">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
+                currentPage === page
+                  ? 'bg-primary text-white'
+                  : 'bg-surface text-text-secondary hover:bg-border'
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
