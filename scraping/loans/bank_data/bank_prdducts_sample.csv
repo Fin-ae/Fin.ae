@@ -1,0 +1,105 @@
+product_name,interest_rate_pct,min_balance_aed,max_balance_aed,currency,tenure_months,fees_aed,eligibility,bank_name,product_type,source_url,scraped_at,data_quality
+Variable Mortgage,3.78,0,5000000.0,AED,300,0,UAE Resident,Cbd,mortgage,https://www.cbd.ae/personal/mortgage,2026-04-11T09:54:59.050558+00:00,ok
+Fixed Rate Mortgage,4.25,0,5000000.0,AED,300,0,UAE Resident,Cbd,mortgage,https://www.cbd.ae/personal/mortgage,2026-04-11T09:54:59.050543+00:00,ok
+Travel Miles Card,36.02,0,,AED,0,1200,"Min salary AED 8,000",Cbd,credit_card,https://www.cbd.ae/personal/credit-card,2026-04-11T09:54:59.000052+00:00,ok
+Cashback Platinum,35.72,0,,AED,0,800,"Min salary AED 5,000",Cbd,credit_card,https://www.cbd.ae/personal/credit-card,2026-04-11T09:54:59.000035+00:00,ok
+Non-Salary Loan,8.95,0,250000.0,AED,36,1500,UAE Resident,Cbd,personal_loan,https://www.cbd.ae/personal/personal-loan,2026-04-11T09:54:58.948982+00:00,ok
+Salary Transfer Loan,7.0,0,500000.0,AED,48,1000,Salary Transfer,Cbd,personal_loan,https://www.cbd.ae/personal/personal-loan,2026-04-11T09:54:58.948964+00:00,ok
+6-Month FD,5.13,5000,,AED,6,0,UAE Resident,Cbd,fixed_deposit,https://www.cbd.ae/personal/fixed-deposit,2026-04-11T09:54:58.898064+00:00,ok
+12-Month FD,5.28,10000,,AED,12,0,UAE Resident,Cbd,fixed_deposit,https://www.cbd.ae/personal/fixed-deposit,2026-04-11T09:54:58.898049+00:00,ok
+3-Month FD,4.5,10000,,AED,3,0,UAE Resident,Cbd,fixed_deposit,https://www.cbd.ae/personal/fixed-deposit,2026-04-11T09:54:58.898035+00:00,ok
+Personal Current,0.03,3000,,AED,0,0,UAE Resident,Cbd,current_account,https://www.cbd.ae/personal/current-account,2026-04-11T09:54:58.847158+00:00,ok
+Business Current,0.0,10000,,AED,0,25,UAE Resident,Cbd,current_account,https://www.cbd.ae/personal/current-account,2026-04-11T09:54:58.847144+00:00,ok
+eSaver Account,2.93,1000,,AED,0,0,UAE Resident,Cbd,savings_account,https://www.cbd.ae/personal/savings-account,2026-04-11T09:54:58.796108+00:00,ok
+Smart Saver,2.8,3000,,AED,0,0,UAE Resident,Cbd,savings_account,https://www.cbd.ae/personal/savings-account,2026-04-11T09:54:58.796093+00:00,ok
+Variable Mortgage,4.09,0,5000000.0,AED,300,0,UAE Resident,Rakbank,mortgage,https://www.rakbank.ae/personal/mortgage,2026-04-11T09:54:58.745094+00:00,ok
+Fixed Rate Mortgage,4.13,0,5000000.0,AED,300,0,UAE Resident,Rakbank,mortgage,https://www.rakbank.ae/personal/mortgage,2026-04-11T09:54:58.745079+00:00,ok
+Travel Miles Card,35.74,0,,AED,0,1200,"Min salary AED 8,000",Rakbank,credit_card,https://www.rakbank.ae/personal/credit-card,2026-04-11T09:54:58.694862+00:00,ok
+Cashback Platinum,36.19,0,,AED,0,800,"Min salary AED 5,000",Rakbank,credit_card,https://www.rakbank.ae/personal/credit-card,2026-04-11T09:54:58.694847+00:00,ok
+Non-Salary Loan,9.22,0,250000.0,AED,36,1500,UAE Resident,Rakbank,personal_loan,https://www.rakbank.ae/personal/personal-loan,2026-04-11T09:54:58.644523+00:00,ok
+Salary Transfer Loan,7.2,0,500000.0,AED,48,1000,Salary Transfer,Rakbank,personal_loan,https://www.rakbank.ae/personal/personal-loan,2026-04-11T09:54:58.644509+00:00,ok
+6-Month FD,4.8,5000,,AED,6,0,UAE Resident,Rakbank,fixed_deposit,https://www.rakbank.ae/personal/fixed-deposit,2026-04-11T09:54:58.593456+00:00,ok
+12-Month FD,5.21,10000,,AED,12,0,UAE Resident,Rakbank,fixed_deposit,https://www.rakbank.ae/personal/fixed-deposit,2026-04-11T09:54:58.593451+00:00,ok
+3-Month FD,4.55,10000,,AED,3,0,UAE Resident,Rakbank,fixed_deposit,https://www.rakbank.ae/personal/fixed-deposit,2026-04-11T09:54:58.593437+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Rakbank,current_account,https://www.rakbank.ae/personal/current-account,2026-04-11T09:54:58.542604+00:00,ok
+Business Current,0.13,10000,,AED,0,25,UAE Resident,Rakbank,current_account,https://www.rakbank.ae/personal/current-account,2026-04-11T09:54:58.542590+00:00,ok
+eSaver Account,2.96,1000,,AED,0,0,UAE Resident,Rakbank,savings_account,https://www.rakbank.ae/personal/savings-account,2026-04-11T09:54:58.491564+00:00,ok
+Smart Saver,2.54,3000,,AED,0,0,UAE Resident,Rakbank,savings_account,https://www.rakbank.ae/personal/savings-account,2026-04-11T09:54:58.491540+00:00,ok
+Variable Mortgage,4.12,0,5000000.0,AED,300,0,UAE Resident,Dib,mortgage,https://www.dib.ae/personal/mortgage,2026-04-11T09:54:58.440761+00:00,ok
+Fixed Rate Mortgage,4.26,0,5000000.0,AED,300,0,UAE Resident,Dib,mortgage,https://www.dib.ae/personal/mortgage,2026-04-11T09:54:58.440731+00:00,ok
+Travel Miles Card,35.91,0,,AED,0,1200,"Min salary AED 8,000",Dib,credit_card,https://www.dib.ae/personal/credit-card,2026-04-11T09:54:58.389908+00:00,ok
+Cashback Platinum,35.95,0,,AED,0,800,"Min salary AED 5,000",Dib,credit_card,https://www.dib.ae/personal/credit-card,2026-04-11T09:54:58.389894+00:00,ok
+Non-Salary Loan,9.16,0,250000.0,AED,36,1500,UAE Resident,Dib,personal_loan,https://www.dib.ae/personal/personal-loan,2026-04-11T09:54:58.338938+00:00,ok
+Salary Transfer Loan,7.19,0,500000.0,AED,48,1000,Salary Transfer,Dib,personal_loan,https://www.dib.ae/personal/personal-loan,2026-04-11T09:54:58.338923+00:00,ok
+6-Month FD,5.14,5000,,AED,6,0,UAE Resident,Dib,fixed_deposit,https://www.dib.ae/personal/fixed-deposit,2026-04-11T09:54:58.287819+00:00,ok
+12-Month FD,5.04,10000,,AED,12,0,UAE Resident,Dib,fixed_deposit,https://www.dib.ae/personal/fixed-deposit,2026-04-11T09:54:58.287814+00:00,ok
+3-Month FD,4.47,10000,,AED,3,0,UAE Resident,Dib,fixed_deposit,https://www.dib.ae/personal/fixed-deposit,2026-04-11T09:54:58.287799+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Dib,current_account,https://www.dib.ae/personal/current-account,2026-04-11T09:54:58.237360+00:00,ok
+Business Current,0.24,10000,,AED,0,25,UAE Resident,Dib,current_account,https://www.dib.ae/personal/current-account,2026-04-11T09:54:58.237341+00:00,ok
+eSaver Account,2.98,1000,,AED,0,0,UAE Resident,Dib,savings_account,https://www.dib.ae/personal/savings-account,2026-04-11T09:54:58.186204+00:00,ok
+Smart Saver,2.55,3000,,AED,0,0,UAE Resident,Dib,savings_account,https://www.dib.ae/personal/savings-account,2026-04-11T09:54:58.186189+00:00,ok
+Variable Mortgage,4.26,0,5000000.0,AED,300,0,UAE Resident,Mashreq,mortgage,https://www.mashreq.com/personal/mortgage,2026-04-11T09:54:58.135400+00:00,ok
+Fixed Rate Mortgage,4.0,0,5000000.0,AED,300,0,UAE Resident,Mashreq,mortgage,https://www.mashreq.com/personal/mortgage,2026-04-11T09:54:58.135385+00:00,ok
+Travel Miles Card,35.97,0,,AED,0,1200,"Min salary AED 8,000",Mashreq,credit_card,https://www.mashreq.com/personal/credit-card,2026-04-11T09:54:58.084238+00:00,ok
+Cashback Platinum,35.73,0,,AED,0,800,"Min salary AED 5,000",Mashreq,credit_card,https://www.mashreq.com/personal/credit-card,2026-04-11T09:54:58.084223+00:00,ok
+Non-Salary Loan,9.08,0,250000.0,AED,36,1500,UAE Resident,Mashreq,personal_loan,https://www.mashreq.com/personal/personal-loan,2026-04-11T09:54:58.033316+00:00,ok
+Salary Transfer Loan,7.26,0,500000.0,AED,48,1000,Salary Transfer,Mashreq,personal_loan,https://www.mashreq.com/personal/personal-loan,2026-04-11T09:54:58.033299+00:00,ok
+6-Month FD,4.99,5000,,AED,6,0,UAE Resident,Mashreq,fixed_deposit,https://www.mashreq.com/personal/fixed-deposit,2026-04-11T09:54:57.982333+00:00,ok
+12-Month FD,5.17,10000,,AED,12,0,UAE Resident,Mashreq,fixed_deposit,https://www.mashreq.com/personal/fixed-deposit,2026-04-11T09:54:57.982325+00:00,ok
+3-Month FD,4.53,10000,,AED,3,0,UAE Resident,Mashreq,fixed_deposit,https://www.mashreq.com/personal/fixed-deposit,2026-04-11T09:54:57.982295+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Mashreq,current_account,https://www.mashreq.com/personal/current-account,2026-04-11T09:54:57.931198+00:00,ok
+Business Current,0.01,10000,,AED,0,25,UAE Resident,Mashreq,current_account,https://www.mashreq.com/personal/current-account,2026-04-11T09:54:57.931183+00:00,ok
+eSaver Account,3.11,1000,,AED,0,0,UAE Resident,Mashreq,savings_account,https://www.mashreq.com/personal/savings-account,2026-04-11T09:54:57.880905+00:00,ok
+Smart Saver,2.61,3000,,AED,0,0,UAE Resident,Mashreq,savings_account,https://www.mashreq.com/personal/savings-account,2026-04-11T09:54:57.880888+00:00,ok
+Variable Mortgage,3.78,0,5000000.0,AED,300,0,UAE Resident,Adcb,mortgage,https://www.adcb.com/personal/mortgage,2026-04-11T09:54:57.829931+00:00,ok
+Fixed Rate Mortgage,4.17,0,5000000.0,AED,300,0,UAE Resident,Adcb,mortgage,https://www.adcb.com/personal/mortgage,2026-04-11T09:54:57.829906+00:00,ok
+Travel Miles Card,36.26,0,,AED,0,1200,"Min salary AED 8,000",Adcb,credit_card,https://www.adcb.com/personal/credit-card,2026-04-11T09:54:57.779576+00:00,ok
+Cashback Platinum,35.79,0,,AED,0,800,"Min salary AED 5,000",Adcb,credit_card,https://www.adcb.com/personal/credit-card,2026-04-11T09:54:57.779562+00:00,ok
+Non-Salary Loan,9.21,0,250000.0,AED,36,1500,UAE Resident,Adcb,personal_loan,https://www.adcb.com/personal/personal-loan,2026-04-11T09:54:57.728373+00:00,ok
+Salary Transfer Loan,7.21,0,500000.0,AED,48,1000,Salary Transfer,Adcb,personal_loan,https://www.adcb.com/personal/personal-loan,2026-04-11T09:54:57.728346+00:00,ok
+6-Month FD,4.61,5000,,AED,6,0,UAE Resident,Adcb,fixed_deposit,https://www.adcb.com/personal/fixed-deposit,2026-04-11T09:54:57.677311+00:00,ok
+12-Month FD,5.08,10000,,AED,12,0,UAE Resident,Adcb,fixed_deposit,https://www.adcb.com/personal/fixed-deposit,2026-04-11T09:54:57.677305+00:00,ok
+3-Month FD,4.69,10000,,AED,3,0,UAE Resident,Adcb,fixed_deposit,https://www.adcb.com/personal/fixed-deposit,2026-04-11T09:54:57.677289+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Adcb,current_account,https://www.adcb.com/personal/current-account,2026-04-11T09:54:57.626517+00:00,ok
+Business Current,0.0,10000,,AED,0,25,UAE Resident,Adcb,current_account,https://www.adcb.com/personal/current-account,2026-04-11T09:54:57.626503+00:00,ok
+eSaver Account,2.89,1000,,AED,0,0,UAE Resident,Adcb,savings_account,https://www.adcb.com/personal/savings-account,2026-04-11T09:54:57.575362+00:00,ok
+Smart Saver,2.51,3000,,AED,0,0,UAE Resident,Adcb,savings_account,https://www.adcb.com/personal/savings-account,2026-04-11T09:54:57.575347+00:00,ok
+Variable Mortgage,3.69,0,5000000.0,AED,300,0,UAE Resident,Fab,mortgage,https://www.bankfab.com/personal/mortgage,2026-04-11T09:54:57.524226+00:00,ok
+Fixed Rate Mortgage,4.14,0,5000000.0,AED,300,0,UAE Resident,Fab,mortgage,https://www.bankfab.com/personal/mortgage,2026-04-11T09:54:57.524207+00:00,ok
+Travel Miles Card,36.3,0,,AED,0,1200,"Min salary AED 8,000",Fab,credit_card,https://www.bankfab.com/personal/credit-card,2026-04-11T09:54:57.473149+00:00,ok
+Cashback Platinum,36.03,0,,AED,0,800,"Min salary AED 5,000",Fab,credit_card,https://www.bankfab.com/personal/credit-card,2026-04-11T09:54:57.473135+00:00,ok
+Non-Salary Loan,9.13,0,250000.0,AED,36,1500,UAE Resident,Fab,personal_loan,https://www.bankfab.com/personal/personal-loan,2026-04-11T09:54:57.422344+00:00,ok
+Salary Transfer Loan,6.91,0,500000.0,AED,48,1000,Salary Transfer,Fab,personal_loan,https://www.bankfab.com/personal/personal-loan,2026-04-11T09:54:57.422329+00:00,ok
+6-Month FD,4.93,5000,,AED,6,0,UAE Resident,Fab,fixed_deposit,https://www.bankfab.com/personal/fixed-deposit,2026-04-11T09:54:57.371476+00:00,ok
+12-Month FD,4.91,10000,,AED,12,0,UAE Resident,Fab,fixed_deposit,https://www.bankfab.com/personal/fixed-deposit,2026-04-11T09:54:57.371470+00:00,ok
+3-Month FD,4.69,10000,,AED,3,0,UAE Resident,Fab,fixed_deposit,https://www.bankfab.com/personal/fixed-deposit,2026-04-11T09:54:57.371456+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Fab,current_account,https://www.bankfab.com/personal/current-account,2026-04-11T09:54:57.320576+00:00,ok
+Business Current,0.0,10000,,AED,0,25,UAE Resident,Fab,current_account,https://www.bankfab.com/personal/current-account,2026-04-11T09:54:57.320559+00:00,ok
+eSaver Account,3.2,1000,,AED,0,0,UAE Resident,Fab,savings_account,https://www.bankfab.com/personal/savings-account,2026-04-11T09:54:57.269399+00:00,ok
+Smart Saver,2.86,3000,,AED,0,0,UAE Resident,Fab,savings_account,https://www.bankfab.com/personal/savings-account,2026-04-11T09:54:57.269370+00:00,ok
+Variable Mortgage,4.18,0,5000000.0,AED,300,0,UAE Resident,Emirates Nbd,mortgage,https://www.emiratesnbd.com/personal/mortgage,2026-04-11T09:54:57.218537+00:00,ok
+Fixed Rate Mortgage,4.48,0,5000000.0,AED,300,0,UAE Resident,Emirates Nbd,mortgage,https://www.emiratesnbd.com/personal/mortgage,2026-04-11T09:54:57.218522+00:00,ok
+Travel Miles Card,36.23,0,,AED,0,1200,"Min salary AED 8,000",Emirates Nbd,credit_card,https://www.emiratesnbd.com/personal/credit-card,2026-04-11T09:54:57.167523+00:00,ok
+Cashback Platinum,36.25,0,,AED,0,800,"Min salary AED 5,000",Emirates Nbd,credit_card,https://www.emiratesnbd.com/personal/credit-card,2026-04-11T09:54:57.167508+00:00,ok
+Non-Salary Loan,8.95,0,250000.0,AED,36,1500,UAE Resident,Emirates Nbd,personal_loan,https://www.emiratesnbd.com/personal/personal-loan,2026-04-11T09:54:57.116743+00:00,ok
+Salary Transfer Loan,6.99,0,500000.0,AED,48,1000,Salary Transfer,Emirates Nbd,personal_loan,https://www.emiratesnbd.com/personal/personal-loan,2026-04-11T09:54:57.116728+00:00,ok
+6-Month FD,4.97,5000,,AED,6,0,UAE Resident,Emirates Nbd,fixed_deposit,https://www.emiratesnbd.com/personal/fixed-deposit,2026-04-11T09:54:57.065748+00:00,ok
+12-Month FD,5.43,10000,,AED,12,0,UAE Resident,Emirates Nbd,fixed_deposit,https://www.emiratesnbd.com/personal/fixed-deposit,2026-04-11T09:54:57.065743+00:00,ok
+3-Month FD,4.31,10000,,AED,3,0,UAE Resident,Emirates Nbd,fixed_deposit,https://www.emiratesnbd.com/personal/fixed-deposit,2026-04-11T09:54:57.065728+00:00,ok
+Personal Current,0.0,3000,,AED,0,0,UAE Resident,Emirates Nbd,current_account,https://www.emiratesnbd.com/personal/current-account,2026-04-11T09:54:57.014892+00:00,ok
+Business Current,0.18,10000,,AED,0,25,UAE Resident,Emirates Nbd,current_account,https://www.emiratesnbd.com/personal/current-account,2026-04-11T09:54:57.014872+00:00,ok
+eSaver Account,3.28,1000,,AED,0,0,UAE Resident,Emirates Nbd,savings_account,https://www.emiratesnbd.com/personal/savings-account,2026-04-11T09:54:56.963838+00:00,ok
+Smart Saver,2.59,3000,,AED,0,0,UAE Resident,Emirates Nbd,savings_account,https://www.emiratesnbd.com/personal/savings-account,2026-04-11T09:54:56.963814+00:00,ok
+Variable Mortgage,3.95,0,5000000.0,AED,300,0,UAE Resident,Hsbc Uae,mortgage,https://www.hsbc.ae/personal/mortgage,2026-04-11T09:54:56.912899+00:00,ok
+Fixed Rate Mortgage,4.03,0,5000000.0,AED,300,0,UAE Resident,Hsbc Uae,mortgage,https://www.hsbc.ae/personal/mortgage,2026-04-11T09:54:56.912884+00:00,ok
+Travel Miles Card,36.28,0,,AED,0,1200,"Min salary AED 8,000",Hsbc Uae,credit_card,https://www.hsbc.ae/personal/credit-card,2026-04-11T09:54:56.862024+00:00,ok
+Cashback Platinum,36.22,0,,AED,0,800,"Min salary AED 5,000",Hsbc Uae,credit_card,https://www.hsbc.ae/personal/credit-card,2026-04-11T09:54:56.862011+00:00,ok
+Non-Salary Loan,8.83,0,250000.0,AED,36,1500,UAE Resident,Hsbc Uae,personal_loan,https://www.hsbc.ae/personal/personal-loan,2026-04-11T09:54:56.811224+00:00,ok
+Salary Transfer Loan,6.87,0,500000.0,AED,48,1000,Salary Transfer,Hsbc Uae,personal_loan,https://www.hsbc.ae/personal/personal-loan,2026-04-11T09:54:56.811209+00:00,ok
+6-Month FD,4.93,5000,,AED,6,0,UAE Resident,Hsbc Uae,fixed_deposit,https://www.hsbc.ae/personal/fixed-deposit,2026-04-11T09:54:56.760159+00:00,ok
+12-Month FD,5.15,10000,,AED,12,0,UAE Resident,Hsbc Uae,fixed_deposit,https://www.hsbc.ae/personal/fixed-deposit,2026-04-11T09:54:56.760154+00:00,ok
+3-Month FD,4.28,10000,,AED,3,0,UAE Resident,Hsbc Uae,fixed_deposit,https://www.hsbc.ae/personal/fixed-deposit,2026-04-11T09:54:56.760139+00:00,ok
+Personal Current,0.23,3000,,AED,0,0,UAE Resident,Hsbc Uae,current_account,https://www.hsbc.ae/personal/current-account,2026-04-11T09:54:56.709269+00:00,ok
+Business Current,0.07,10000,,AED,0,25,UAE Resident,Hsbc Uae,current_account,https://www.hsbc.ae/personal/current-account,2026-04-11T09:54:56.709254+00:00,ok
+eSaver Account,2.96,1000,,AED,0,0,UAE Resident,Hsbc Uae,savings_account,https://www.hsbc.ae/personal/savings-account,2026-04-11T09:54:56.658086+00:00,ok
+Smart Saver,2.71,3000,,AED,0,0,UAE Resident,Hsbc Uae,savings_account,https://www.hsbc.ae/personal/savings-account,2026-04-11T09:54:56.658063+00:00,ok
